@@ -107,7 +107,17 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log("Received values of form: ", values);
+          console.log("test", values);
           this.$router.push("/Main");
+          //     this.axios.post(
+          //   "/api/auth/login",
+          //   {
+          //     values
+          //   }.then((res) => {
+          //     localStorage.setItem("access_token", res.data.access_token);
+          //     this.$router.push("/Main"));
+          //   })
+          // );
         }
       });
     },
@@ -120,3 +130,23 @@ body {
   background-color: #ffffff;
 }
 </style>
+<!-- const formState = reactive({
+  username: "",
+  password: "",
+  remember: true,
+}); -->
+<!-- methods: {
+  login() {
+    this.axios.post(
+      "/api/auth/login",
+      {
+        username: this.formState.username,
+        password: this.formState.password,
+        remember: this.formState.remember,
+      }.then((res) => {
+        localStorage.setItem("access_token", res.data.access_token);
+        this.$router.push({ name: "user.main" });
+      })
+    );
+  },
+}, -->

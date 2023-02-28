@@ -16,9 +16,10 @@
 <script>
 export default {
   computed: {
+    // Sets components name based on current route's specified layout, defaults to
+    // <layout-default></layout-default> component.
     layout() {
-      const layoutName = this.$route.meta.layout || "DefaultLayout";
-      return () => import(`@/layouts/${layoutName}.vue`);
+      return "layout-" + (this.$route.meta.layout || "default").toLowerCase();
     },
   },
 };

@@ -10,62 +10,65 @@ let routes = [
     component: () => import("../views/404.vue"),
   },
   // {
-  //   path: "/Home",
-  //   name: "Home",
-  //   redirect: "/dashboard",
+  // 	path: '/',
+  // 	name: 'Home',
+  // 	redirect: '/dashboard',
   // },
   // {
-  //   path: "/dashboard",
-  //   name: "Dashboard",
-  //   layout: "dashboard",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "dashboard" */ "../views/Dashboard.vue"),
+  // 	path: '/dashboard',
+  // 	name: 'Dashboard',
+  // 	layout: "dashboard",
+  // 	// route level code-splitting
+  // 	// this generates a separate chunk (about.[hash].js) for this route
+  // 	// which is lazy-loaded when the route is visited.
+  // 	component: () => import(/* webpackChunkName: "dashboard" */ '../views/Dashboard.vue'),
   // },
   // {
-  //   path: "/layout",
-  //   name: "Layout",
-  //   layout: "dashboard",
-  //   component: () => import("../views/Layout.vue"),
+  // 	path: '/layout',
+  // 	name: 'Layout',
+  // 	layout: "dashboard",
+  // 	component: () => import('../views/Layout.vue'),
   // },
   // {
-  //   path: "/tables",
-  //   name: "Tables",
-  //   layout: "dashboard",
-  //   component: () => import("../views/Tables.vue"),
+  // 	path: '/tables',
+  // 	name: 'Tables',
+  // 	layout: "dashboard",
+  // 	component: () => import('../views/Tables.vue'),
   // },
   // {
-  //   path: "/billing",
-  //   name: "Billing",
-  //   layout: "dashboard",
-  //   component: () => import("../views/Billing.vue"),
+  // 	path: '/billing',
+  // 	name: 'Billing',
+  // 	layout: "dashboard",
+  // 	component: () => import('../views/Billing.vue'),
   // },
   // {
-  //   path: "/rtl",
-  //   name: "RTL",
-  //   layout: "dashboard-rtl",
-  //   meta: {
-  //     layoutClass: "dashboard-rtl",
-  //   },
-  //   component: () => import("../views/RTL.vue"),
+  // 	path: '/rtl',
+  // 	name: 'RTL',
+  // 	layout: "dashboard-rtl",
+  // 	meta: {
+  // 		layoutClass: 'dashboard-rtl',
+  // 	},
+  // 	component: () => import('../views/RTL.vue'),
+  // },
+  // {
+  // 	path: '/Profile',
+  // 	name: 'Profile',
+  // 	layout: "dashboard",
+  // 	meta: {
+  // 		layoutClass: 'layout-profile',
+  // 	},
+  // 	component: () => import('../views/Profile.vue'),
   // },
   {
     path: "/Main",
     name: "Main",
+    layout: "dashboard",
     component: () => import("../views/Main.vue"),
-    meta: {
-      layout: "DashboardLayout",
-    },
   },
   {
     path: "/",
     name: "Sign-In",
     component: () => import("../views/Sign-In.vue"),
-    meta: {
-      layout: "DefaultLayout",
-    },
   },
   {
     path: "/sign-up",
@@ -79,19 +82,19 @@ let routes = [
 
 // Adding layout property from each route to the meta
 // object so it can be accessed later.
-// function addLayoutToRoute(route, parentLayout = "default") {
-//   route.meta = route.meta || {};
-//   route.meta.layout = route.layout || parentLayout;
+function addLayoutToRoute(route, parentLayout = "default") {
+  route.meta = route.meta || {};
+  route.meta.layout = route.layout || parentLayout;
 
-//   if (route.children) {
-//     route.children = route.children.map((childRoute) =>
-//       addLayoutToRoute(childRoute, route.meta.layout)
-//     );
-//   }
-//   return route;
-// }
+  if (route.children) {
+    route.children = route.children.map((childRoute) =>
+      addLayoutToRoute(childRoute, route.meta.layout)
+    );
+  }
+  return route;
+}
 
-// routes = routes.map((route) => addLayoutToRoute(route));
+routes = routes.map((route) => addLayoutToRoute(route));
 
 const router = new VueRouter({
   mode: "hash",

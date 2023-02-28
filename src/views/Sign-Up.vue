@@ -12,10 +12,6 @@
     >
       <div class="content">
         <h1 class="mb-5">Sign Up</h1>
-        <p class="text-lg">
-          Use these awesome forms to login or create new account in your project
-          for free.
-        </p>
       </div>
     </div>
     <!-- / Sign Up Image And Headings -->

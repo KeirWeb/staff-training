@@ -19,6 +19,10 @@ import App from "./App.vue";
 import router from "./router";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import DefaultLayout from "./layouts/Default.vue";
+import DashboardLayout from "./layouts/Dashboard.vue";
+import DashboardRTLLayout from "./layouts/DashboardRTL.vue";
+
 // import './plugins/click-away'
 
 import "./scss/app.scss";
@@ -26,6 +30,10 @@ import "./scss/app.scss";
 Vue.use(Antd).use(VueAxios, axios);
 
 Vue.config.productionTip = false;
+
+Vue.component("layout-default", DefaultLayout);
+Vue.component("layout-dashboard", DashboardLayout);
+Vue.component("layout-dashboard-rtl", DashboardRTLLayout);
 
 new Vue({
   router,
